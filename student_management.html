@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 180px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .delete {
+            background-color: red;
+        }
+    </style>
+</heaD>
+  <body>
+<div class="container">
+    <h1>Student Management System</h1>
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="number" id="age" placeholder="Age">
+    <input type="text" id="course" placeholder="Course">
+    <input type="number" id="marks" placeholder="Marks">
+    <br><br>
+    <button onclick="addStudent()">Add Student</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Marks</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable">
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function addStudent() {
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let course = document.getElementById("course").value;
+        let marks = document.getElementById("marks").value;
+        if (name === "" || age === "" || course === "" || marks === "") {
+            alert("Please enter all student details.");
+            return;
+        }
+        let table = document.getElementById("studentTable");
+        let row = table.insertRow();
+        row.insertCell(0).innerHTML = name;
+        row.insertCell(1).innerHTML = age;
+        row.insertCell(2).innerHTML = course;
+        row.insertCell(3).innerHTML = marks;
+        let deleteCell = row.insertCell(4);
+        deleteCell.innerHTML =
+            '<button class="delete" onclick="deleteStudent(this)">Delete</button>';
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("course").value = "";
+        document.getElementById("marks").value = "";
+    }
+    function deleteStudent(button) {
+        let row = button.parentNode.parentNode;
+        row.remove();
+    }
+</script>
+</body>
+</html>
+OUTPUT:
+        Student Management System
+ Student Name   Age   Course   Marks
+ [Rahul     ] [20] [BCA   ] [85] [Add Student]
+ ---------------------------------------------------------
+| Student Name | Age | Course | Marks | Action           |
+ ---------------------------------------------------------
+| Rahul        | 20  | BCA    | 85    | [Delete]         |
+| Priya        | 19  | B.Sc   | 90    | [Delete]         |
+ ---------------------------------------------------------
